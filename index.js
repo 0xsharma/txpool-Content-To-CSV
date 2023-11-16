@@ -59,7 +59,7 @@ async function main() {
 
     }
 
-    await timer(2000)
+    await timer(10000)
 
 }
 
