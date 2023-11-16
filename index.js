@@ -43,18 +43,19 @@ async function main() {
             if (txobject.maxPriorityFeePerGas !== undefined) {
                 txobject.maxPriorityFeePerGas = parseInt(txobject.maxPriorityFeePerGas, 16)
             }
+
+            fs.appendFile(`./output/out-${lastStartingTime}b.json`, JSON.stringify(txobject) + '\n', function (err) {
+                if (err) throw err;
+                console.log('Added');
+            });
+
+            fs.appendFile(`./output/out-${lastStartingTime}.csv`, JSON.stringify(txobject.gasPrice) + ',' + JSON.stringify(txobject.maxFeePerGas) + ',' + JSON.stringify(txobject.maxPriorityFeePerGas) + ',' + JSON.stringify(txobject.hash) + '\n', function (err) {
+                if (err) throw err;
+                console.log('Added');
+            });
+
+            break
         }
-        fs.appendFile(`./output/out-${lastStartingTime}b.json`, JSON.stringify(txobject) + '\n', function (err) {
-            if (err) throw err;
-            console.log('Added');
-        });
-
-        fs.appendFile(`./output/out-${lastStartingTime}.csv`, JSON.stringify(txobject.gasPrice) + ',' + JSON.stringify(txobject.maxFeePerGas) + ',' + JSON.stringify(txobject.maxPriorityFeePerGas) + ',' + JSON.stringify(txobject.hash) + '\n', function (err) {
-            if (err) throw err;
-            console.log('Added');
-        });
-
-        break
 
     }
 
